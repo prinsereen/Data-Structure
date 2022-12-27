@@ -9,6 +9,7 @@
 using namespace std;
 
 struct pasien{
+    string id_pasien;
     string nama;
     int umur;
     string tipe;
@@ -28,6 +29,9 @@ struct Queue{
     adr first;
     adr last;
 };
+
+pasien createPasien(string id_pasien, string nama, int umur, string tipe, int burst, int waiting);
+void createQueue(Queue &Q);
 
 
 

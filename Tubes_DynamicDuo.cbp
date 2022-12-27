@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Tubes_Queue.cpp" />
 		<Unit filename="Tubes_Queue.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
