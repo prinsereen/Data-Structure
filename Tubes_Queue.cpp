@@ -1,14 +1,9 @@
 #include "Tubes_Queue.h"
 
-adr createPasien(string id_pasien, string nama, int umur, string tipe, int burst, int waiting){
+adr createPasien(infotype x){
     adr P = new element;
 
-    info(P).id_pasien = id_pasien;
-    info(P).nama = nama;
-    info(P).umur = umur;
-    info(P).tipe = tipe;
-    info(P).burst = burst;
-    info(P).waiting = waiting;
+    info(P) = x;
     next(P) = NULL;
 
     return P;
@@ -17,4 +12,13 @@ adr createPasien(string id_pasien, string nama, int umur, string tipe, int burst
 void createQueue(Queue &Q){
     first(Q) = NULL;
     last(Q) = NULL;
+}
+
+void enque(Queue &Q, adr P){
+    if (first(Q) == NULL) {
+        first(Q) = P;
+    }else {
+        next(P) = first(Q);
+        first(Q) = P;
+    }
 }

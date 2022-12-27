@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1672131664 source:c:\users\asus\downloads\tubes\tubes_dynamicduo\tubes_queue.cpp
+	"Tubes_Queue.h"
+
+1672131815 c:\users\asus\downloads\tubes\tubes_dynamicduo\tubes_queue.h
+	<iostream>
+
+1672131728 source:c:\users\asus\downloads\tubes\tubes_dynamicduo\main.cpp
+	"Tubes_Queue.h"
+

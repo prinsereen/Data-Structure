@@ -30,8 +30,10 @@ struct Queue{
     adr last;
 };
 
-pasien createPasien(string id_pasien, string nama, int umur, string tipe, int burst, int waiting);
+adr createPasien(infotype x);
 void createQueue(Queue &Q);
+void enque(Queue &Q, adr P);
+
 
 
 
