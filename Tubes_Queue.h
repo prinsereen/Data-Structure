@@ -33,6 +33,7 @@ struct Queue{
 adr createPasien(infotype x);
 void createQueue(Queue &Q);
 void enque(Queue &Q, adr P);
+void printQueue(Queue Q);
 
 
 
