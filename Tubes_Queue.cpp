@@ -23,6 +23,21 @@ void enque(Queue &Q, adr P){
     }
 }
 
+void deque(Queue &Q, adr P){
+    if (first(Q) == last(Q)){
+        first(Q) = NULL;
+        last(Q) = NULL;
+    }else {
+        P = last(Q);
+        adr beforeLast = first(Q);
+        while (next(beforeLast) != last(Q)){
+            beforeLast = next(beforeLast);
+        }
+        last(Q) = beforeLast;
+        next(beforeLast) = NULL;
+    }
+}
+
 void printQueue(Queue Q){
     if (first(Q) == NULL) {
         cout << "Antrian Kosong !" << endl;

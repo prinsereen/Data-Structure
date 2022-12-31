@@ -14,10 +14,6 @@ int main()
     x.waiting = 0;
     adr P = createPasien(x);
     enque(Q, P);
-    printQueue(Q);
-
-
-
 
     x.id_pasien = "M0";
     x.nama = "N";
@@ -27,6 +23,8 @@ int main()
     x.waiting = 0;
     P = createPasien(x);
     enque(Q, P);
+    printQueue(Q);
+    deque(Q, P);
     printQueue(Q);
 
 
