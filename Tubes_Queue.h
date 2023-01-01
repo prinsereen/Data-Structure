@@ -35,6 +35,9 @@ void createQueue(Queue &Q);
 void enque(Queue &Q, adr P);
 void deque(Queue &Q, adr P);
 void printQueue(Queue Q);
+bool isFullQ1(Queue Q1);
+bool isFullQ2(Queue Q2);
+void dequeEnque(Queue &Qx, Queue &Qy, adr P);
 
 
 

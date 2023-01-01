@@ -56,3 +56,59 @@ void printQueue(Queue Q){
         }
     }
 }
+
+
+bool isFullQ1(Queue Q1){
+    int sum = 0;
+
+    adr P = first(Q1);
+    sum += 1;
+    while (next(P) != last(Q1)){
+        sum += 1;
+        P = next(P);
+    }
+    return (sum == 2);
+}
+
+bool isFullQ2(Queue Q2){
+    int sum = 0;
+
+    adr P = first(Q2);
+    sum += 1;
+    while (next(P) != last(Q2)){
+        sum += 1;
+        P = next(P);
+    }
+    return (sum == 10);
+}
+
+
+void dequeEnque(Queue &Qx, Queue &Qy, adr P){
+    //Deque
+    cout << "tes 1" << endl;
+    P = last(Qx);
+    cout << "tes 2" << endl;
+    adr beforeLast = first(Qx);
+    cout << "tes 3" << endl;
+    while (next(beforeLast) != last(Qx)){
+        cout << "tes 4" << endl;
+        beforeLast = next(beforeLast);
+        cout << "tes 5" << endl;
+    }
+    last(Qx) = beforeLast;
+    cout << "tes 6" << endl;
+    next(beforeLast) = NULL;
+    cout << "tes 7" << endl;
+    //Enque
+    if (first(Qy) == NULL) {
+        cout << "tes 8" << endl;
+        first(Qy) = P;
+    }else {
+        cout << "tes 9" << endl;
+        next(last(Qx)) = first(Qy);
+        cout << "tes 10" << endl;
+        first(Qy) = last(Qx);
+    }
+
+}
+
