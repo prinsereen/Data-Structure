@@ -8,16 +8,16 @@
 
 using namespace std;
 
-struct pasien{
-    string id_pasien;
-    string nama;
-    int umur;
-    string tipe;
-    int burst;
-    int waiting;
+struct kegiatan{
+    string idKegiatan;
+    string namaKegiatan;
+    int arrivalTime;
+    int burstTime;
+    int waitingTime;
+    int turnaroundTime;
 };
 
-typedef pasien infotype;
+typedef kegiatan infotype;
 typedef struct element *adr;
 
 struct element{
@@ -30,14 +30,14 @@ struct Queue{
     adr last;
 };
 
-adr createPasien(infotype x);
+adr createKegiatan(infotype x);
 void createQueue(Queue &Q);
 void enque(Queue &Q, adr P);
 void deque(Queue &Q, adr P);
 void printQueue(Queue Q);
-bool isFullQ1(Queue Q1);
-bool isFullQ2(Queue Q2);
-void dequeEnque(Queue &Qx, Queue &Qy, adr P);
+void prioUp(Queue &Qx, Queue &Qy, adr P);
+void updateBurstTAT(Queue &Q, int T, int &QT);
+
 
 
 

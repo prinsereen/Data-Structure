@@ -10,63 +10,63 @@ int main()
     createQueue(Q3);
     infotype x;
 
-    x.id_pasien = "MH370";
-    x.nama = "EREN";
-    x.umur = 1;
-    x.tipe = "PARAH";
-    x.burst = 23;
-    x.waiting = 0;
-    adr P = createPasien(x);
+    x.idKegiatan = "A";
+    x.namaKegiatan = "";
+    x.arrivalTime = 0;
+    x.burstTime = 5;
+    x.turnaroundTime = 0;
+    x.waitingTime = 0;
+    adr P = createKegiatan(x);
     enque(Q, P);
 
-    x.id_pasien = "M0";
-    x.nama = "N";
-    x.umur = 2;
-    x.tipe = "PAAH";
-    x.burst = 23;
-    x.waiting = 0;
-    P = createPasien(x);
+    x.idKegiatan = "B";
+    x.namaKegiatan = "";
+    x.arrivalTime = 1;
+    x.burstTime = 15;
+    x.turnaroundTime = 0;
+    x.waitingTime = 0;
+    P = createKegiatan(x);
     enque(Q, P);
 
-    x.id_pasien = "MH370";
-    x.nama = "EREN";
-    x.umur = 3;
-    x.tipe = "PARAH";
-    x.burst = 23;
-    x.waiting = 0;
-    P = createPasien(x);
+    x.idKegiatan = "C";
+    x.namaKegiatan = "";
+    x.arrivalTime = 2;
+    x.burstTime = 25;
+    x.turnaroundTime = 0;
+    x.waitingTime = 0;
+    P = createKegiatan(x);
+    enque(Q, P);
+
+    x.idKegiatan = "D";
+    x.namaKegiatan = "";
+    x.arrivalTime = 3;
+    x.burstTime = 5;
+    x.turnaroundTime = 0;
+    x.waitingTime = 0;
+    P = createKegiatan(x);
     enque(Q2, P);
 
-    x.id_pasien = "M0";
-    x.nama = "N";
-    x.umur = 4;
-    x.tipe = "PAAH";
-    x.burst = 23;
-    x.waiting = 0;
-    P = createPasien(x);
-    enque(Q2, P);
 
 
-
-    x.id_pasien = "MH370";
-    x.nama = "EREN";
-    x.umur = 5;
-    x.tipe = "PARAH";
-    x.burst = 23;
-    x.waiting = 0;
-    P = createPasien(x);
+    x.idKegiatan = "E";
+    x.namaKegiatan = "";
+    x.arrivalTime = 4;
+    x.burstTime = 5;
+    x.turnaroundTime = 0;
+    x.waitingTime = 0;
+    P = createKegiatan(x);
     enque(Q3, P);
 
-    x.id_pasien = "M0";
-    x.nama = "N";
-    x.umur = 6;
-    x.tipe = "PAAH";
-    x.burst = 23;
-    x.waiting = 0;
-    P = createPasien(x);
+    x.idKegiatan = "F";
+    x.namaKegiatan = "";
+    x.arrivalTime = 5;
+    x.burstTime = 5;
+    x.turnaroundTime = 0;
+    x.waitingTime = 0;
+    P = createKegiatan(x);
     enque(Q3, P);
 
-
+/*
     cout << "QUEUE 1" << endl;
     printQueue(Q);
     cout << endl;
@@ -82,8 +82,8 @@ int main()
     cout << endl;
 
     deque(Q, P);
-    dequeEnque(Q3, Q2, P);
-    dequeEnque(Q2, Q, P);
+    prioUp(Q3, Q2, P);
+    prioUp(Q2, Q, P);
 
     cout << "QUEUE 1" << endl;
     printQueue(Q);
@@ -97,11 +97,17 @@ int main()
     cout << "QUEUE 3" << endl;
     printQueue(Q3);
     cout << endl;
+*/
+
+
+    int QT = 10;
+    updateBurstTAT(Q, 5, QT);
+    printQueue(Q);
 
 
 
 
-    /*
+ /*
     cout << info(P).id_pasien << endl;
     printQueue(Q);
     deque(Q, P);
