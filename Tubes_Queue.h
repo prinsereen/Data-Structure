@@ -36,7 +36,7 @@ void enque(Queue &Q, adr P);
 void deque(Queue &Q, adr P);
 void printQueue(Queue Q);
 void prioUp(Queue &Qx, Queue &Qy, adr P);
-void updateBurstTAT(Queue &Q, int T, int &QT);
+void updateBurst(Queue &Q, int &T, int QT);
 
 
 

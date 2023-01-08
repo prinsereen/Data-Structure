@@ -83,22 +83,34 @@ void prioUp(Queue &Qx, Queue &Qy, adr P){
 }
 
 
-void updateBurstTAT(Queue &Q, int T, int &QT){
+void updateBurst(Queue &Q, int &T, int QT){
     adr P = first(Q);
-    while (P != NULL){
-        info(P).turnaroundTime = T;
-        P = next(P);
-    }
-    P = first(Q);
-    while (T > 0 && P != NULL){
-        if (info(P).burstTime - QT > 0){
-            info(P).burstTime = info(P).burstTime - QT;
-            T = T-QT;
-        }else{
-            T = T- info(P).burstTime;
-            info(P).burstTime = 0;
-            deque(Q, P);
+    int temp = QT;
+    while (T > 0){
+        QT = temp;
+        while (QT > 0 && P != last(Q) && T > 0){
+            if (info(P).burstTime <= QT ){
+                QT = QT - info(P).burstTime;
+                if (T <= info(P).burstTime){
+                    info(P).burstTime = info(P).burstTime - T;
+                    T = 0;
+                    if (info(P).burstTime == 0){
+                        deque(Q, P);
+                    }
+                }else {
+                    T = T - info(P).burstTime;
+                    info(P).burstTime = 0;
+                    deque(Q, P);
+                }
+            }else{
+                info(P).burstTime = info(P).burstTime - QT;
+                T = T - QT;
+                QT = 0;
+            }
+            P = next(P);
         }
-        P = next(P);
+        P = first(Q);
+        cout << T << endl;
+        QT = temp;
     }
 }

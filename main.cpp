@@ -39,7 +39,7 @@ int main()
 
     x.idKegiatan = "D";
     x.namaKegiatan = "";
-    x.arrivalTime = 3;
+    x.arrivalTime = 5;
     x.burstTime = 5;
     x.turnaroundTime = 0;
     x.waitingTime = 0;
@@ -51,11 +51,11 @@ int main()
     x.idKegiatan = "E";
     x.namaKegiatan = "";
     x.arrivalTime = 4;
-    x.burstTime = 5;
+    x.burstTime = 15;
     x.turnaroundTime = 0;
     x.waitingTime = 0;
     P = createKegiatan(x);
-    enque(Q3, P);
+    enque(Q2, P);
 
     x.idKegiatan = "F";
     x.namaKegiatan = "";
@@ -100,9 +100,18 @@ int main()
 */
 
 
-    int QT = 10;
-    updateBurstTAT(Q, 5, QT);
+    int T = 15;
+    updateBurst(Q, T, 10);
+    cout << "Q1" << endl;
     printQueue(Q);
+    cout << endl;
+    //cout << "Q2" << endl;
+    //printQueue(Q2);
+    //cout << endl;
+    //cout << "Q3" << endl;
+    //printQueue(Q3);
+    //cout << endl;
+
 
 
 
