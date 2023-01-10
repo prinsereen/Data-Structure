@@ -11,7 +11,6 @@ using namespace std;
 struct kegiatan{
     string idKegiatan;
     string namaKegiatan;
-    int arrivalTime;
     int burstTime;
     int waitingTime;
     int turnaroundTime;
@@ -32,11 +31,13 @@ struct Queue{
 
 adr createKegiatan(infotype x);
 void createQueue(Queue &Q);
-void enque(Queue &Q, adr P);
-void deque(Queue &Q, adr P);
+void enque(Queue &Q, adr &P);
+void deque(Queue &Q, adr &P);
 void printQueue(Queue Q);
-void prioUp(Queue &Qx, Queue &Qy, adr P);
-void updateBurst(Queue &Q, int &T, int QT);
+void prioUp(Queue &Qx, Queue &Qy, Queue &Qz);
+void progress(Queue &Qx, Queue &Qy, Queue &Qz, int K, int x);
+void updateTATWT(Queue &Qx, Queue &Qy, Queue &Qz, int i);
+void print(adr P);
 
 
 
