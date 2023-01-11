@@ -38,6 +38,7 @@ void prioUp(Queue &Qx, Queue &Qy, Queue &Qz);
 void progress(Queue &Qx, Queue &Qy, Queue &Qz, int K, int x);
 void updateTATWT(Queue &Qx, Queue &Qy, Queue &Qz, int i);
 void print(adr P);
+float rerata(float sum, int n);
 
 
 

@@ -19,20 +19,24 @@ void enque(Queue &Q, adr &P){
         first(Q) = P;
         last(Q) = P;
     }else {
-        adr Z = last(Q);
+
+        adr z = first(Q);
+        while(next(z) != NULL){
+            z = next(z);
+        }
         last(Q) = P;
-        next(Z) = P;
+        next(z) = last(Q);
     }
 }
 
 void deque(Queue &Q, adr &P){
+    P = first(Q);
     if (first(Q) == last(Q)){
         first(Q) = NULL;
         last(Q) = NULL;
     }else {
-        P = first(Q);
         first(Q) = next(P);
-        next(P) == NULL;
+        next(P) = NULL;
     }
 }
 
@@ -60,70 +64,26 @@ void printQueue(Queue Q){
 }
 
 
+
 void prioUp(Queue &Qx, Queue &Qy, Queue &Qz){
+
     adr P;
-    deque(Qy, P);
-    enque(Qx, P);
+    while(first(Qy) != NULL){
+        deque(Qy, P);
+        enque(Qx, P);
+    }
+
     adr Q;
-    deque(Qz, Q);
-    enque(Qy, Q);
-}
-
-
-void progress(Queue &Qx, Queue &Qy, Queue &Qz, int K, int x){
-    int T, i;
-
-    adr e = first(Qx);
-    adr p;
-    //cout << 1 << endl;
-    while(e != NULL){
-        //cout << 2 << endl;
-
-        deque(Qx, p);
-        //cout << 3 << endl;
-        if (info(p).burstTime <= K){
-            //cout << 4 << endl;
-            T += info(p).burstTime;
-            //cout << info(p).idKegiatan << endl;
-            info(p).turnaroundTime += info(p).burstTime;
-            //cout << 6 << endl;
-            i = info(p).burstTime;
-            //cout << 7 << endl;
-            updateTATWT(Qx, Qy, Qz, i);
-            info(p).burstTime = 0;
-            //cout << 8 << endl;
-            print(p);
-            //cout << 9 << endl;
-            cout << "TIME : "<< T << endl;
-
-            //cout << 10 << endl;
-        }else if(info(p).burstTime > K){
-            //cout << 11 << endl;
-            info(p).burstTime -= K;
-            T += K ;
-            //cout << 12 << endl;
-            info(p).turnaroundTime += info(p).burstTime;
-            //cout << info(p).idKegiatan << endl;
-            //cout << info(p).burstTime << endl;
-            //cout << 13 << endl;
-            i = K;
-            //cout << 14 << endl;
-            updateTATWT(Qx, Qy, Qz, i);
-            //cout << 15 << endl;
-            enque(Qx, p);
-            //cout << 16 << endl;
-        }
-        if (T % x == 0){
-            prioUp(Qx, Qy, Qz);
-        }
-        i = 0;
+    while(first(Qz) != NULL){
+        deque(Qz, Q);
+        enque(Qy, Q);
     }
 }
 
 void updateSubTATWT(Queue &Q, int i){
     adr A = first(Q);
 
-    while(A != last(Q)){
+    while(A != NULL){
         info(A).waitingTime += i;
         info(A).turnaroundTime += i;
         A = next(A);
@@ -136,10 +96,60 @@ void updateTATWT(Queue &Qx, Queue &Qy, Queue &Qz, int i){
     updateSubTATWT(Qz, i);
 }
 
+void progress(Queue &Qx, Queue &Qy, Queue &Qz, int K, int x){
+    int T, i, n;
+    float sumTAT, sumWT;
+
+    sumTAT = 0;
+    sumWT = 0;
+    n = 0;
+
+    while(first(Qx) != NULL){
+        adr p;
+        deque(Qx, p);
+
+        if (info(p).burstTime <= K){
+
+            T += info(p).burstTime;
+            info(p).turnaroundTime += info(p).burstTime;
+            i = info(p).burstTime;
+            updateTATWT(Qx, Qy, Qz, i);
+            info(p).burstTime = 0;
+            print(p);
+
+            sumTAT += info(p).turnaroundTime;
+            sumWT += info(p).waitingTime;
+            n++;
+
+            cout << "TIME : "<< T << endl;
+            cout<<endl;
+
+        }else if(info(p).burstTime > K){
+            info(p).burstTime -= K;
+            T += K ;
+            info(p).turnaroundTime += K;
+            i = K;
+            updateTATWT(Qx, Qy, Qz, i);
+            enque(Qx, p);
+        }
+        if (T % x == 0){
+            prioUp(Qx, Qy, Qz);
+        }
+    }
+
+    cout << "Rata - Rata Turnaround Time : " << rerata(sumTAT, n) << endl;
+    cout << "Rata - Rata Waiting Time : " << rerata(sumWT, n) << endl;
+
+}
+
 void print(adr P){
     cout << "ID Kegiatan : " << info(P).idKegiatan << endl;
     cout << "Nama Kegiatan : " << info(P).namaKegiatan << endl;
-    cout << "Burst Time Kegiatan : " << info(P).burstTime << endl;
     cout << "Waktu Tunggu Kegiatan : " << info(P).waitingTime << endl;
     cout << "TAT Kegiatan : " << info(P).turnaroundTime << endl;
+
+}
+
+float rerata(float sum, int n){
+    return sum/n;
 }
