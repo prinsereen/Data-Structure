@@ -45,20 +45,37 @@ void printQueue(Queue Q){
         cout << "Antrian Kosong !" << endl;
     }else {
         adr P = first(Q);
+        cout << setw(9) << "id kegiatan  " <<setw(11) << "namaKegiatan  " <<setw(13)<<setw(11) << "Burst Time  " <<setw(13) << "Waiting Time  " <<setw(13) << "turn around Time" << endl;
+        while (P != NULL){
+            cout << setw(9) << info(P).idKegiatan
+            <<setw(11) << info(P).namaKegiatan
+            <<setw(13) << info(P).burstTime
+            <<setw(13) << info(P).waitingTime
+            <<setw(13) << info(P).turnaroundTime <<endl;
+            P = next(P);
+        }
+    }
+}
+
+void printQueue2(Queue Q){
+    if (first(Q) == NULL) {
+        cout << "Antrian Kosong !" << endl;
+    }else {
+        adr P = first(Q);
         while (P != last(Q)){
-            cout << "ID Kegiatan : " << info(P).idKegiatan << endl;
-            cout << "Nama Kegiatan : " << info(P).namaKegiatan << endl;
-            cout << "Burst Time Kegiatan : " << info(P).burstTime << endl;
-            cout << "Waktu Tunggu Kegiatan : " << info(P).waitingTime << endl;
+            cout << "ID Kegiatan : " << info(P).idKegiatan <<endl;
+            cout << "Nama Kegiatan : " << info(P).namaKegiatan <<endl;
+            cout << "Burst Time Kegiatan : " << info(P).burstTime <<endl;
+            cout << "Waktu Tunggu Kegiatan : " << info(P).waitingTime <<endl;
             cout << "TAT Kegiatan : " << info(P).turnaroundTime << endl;
 
             P = next(P);
             cout << endl;
         }
-        cout << "ID Kegiatan : " << info(P).idKegiatan << endl;
-        cout << "Nama Kegiatan : " << info(P).namaKegiatan << endl;
-        cout << "Burst Time Kegiatan : " << info(P).burstTime << endl;
-        cout << "Waktu Tunggu Kegiatan : " << info(P).waitingTime << endl;
+        cout << "ID Kegiatan : " << info(P).idKegiatan <<endl;
+        cout << "Nama Kegiatan : " << info(P).namaKegiatan <<endl;
+        cout << "Burst Time Kegiatan : " << info(P).burstTime <<endl;
+        cout << "Waktu Tunggu Kegiatan : " << info(P).waitingTime <<endl;
         cout << "TAT Kegiatan : " << info(P).turnaroundTime << endl;
     }
 }
@@ -96,13 +113,9 @@ void updateTATWT(Queue &Qx, Queue &Qy, Queue &Qz, int i){
     updateSubTATWT(Qz, i);
 }
 
-void progress(Queue &Qx, Queue &Qy, Queue &Qz, int K, int x){
-    int T, i, n;
-    float sumTAT, sumWT;
+void progress(Queue &Qx, Queue &Qy, Queue &Qz, Queue &temp, int K, int x, float &sumTAT, float &sumWT, int &n){
+    int T, i;
 
-    sumTAT = 0;
-    sumWT = 0;
-    n = 0;
 
     while(first(Qx) != NULL){
         adr p;
@@ -115,7 +128,7 @@ void progress(Queue &Qx, Queue &Qy, Queue &Qz, int K, int x){
             i = info(p).burstTime;
             updateTATWT(Qx, Qy, Qz, i);
             info(p).burstTime = 0;
-            print(p);
+            enque(temp, p);
 
             sumTAT += info(p).turnaroundTime;
             sumWT += info(p).waitingTime;
@@ -135,11 +148,16 @@ void progress(Queue &Qx, Queue &Qy, Queue &Qz, int K, int x){
         if (T % x == 0){
             prioUp(Qx, Qy, Qz);
         }
+        cout<<"Q1"<<endl;
+        printQueue(Qx);
+        cout<<endl;
+        cout<<"Q2"<<endl;
+        printQueue(Qy);
+        cout<<endl;
+        cout<<"Q3"<<endl;
+        printQueue(Qz);
     }
-
-    cout << "Rata - Rata Turnaround Time : " << rerata(sumTAT, n) << endl;
-    cout << "Rata - Rata Waiting Time : " << rerata(sumWT, n) << endl;
-
+    printQueue2(temp);
 }
 
 void print(adr P){
@@ -150,6 +168,26 @@ void print(adr P){
 
 }
 
-float rerata(float sum, int n){
-    return sum/n;
+void ATAT(float sumTAT, int n){
+    float rerata = sumTAT/n;
+
+    cout << "Average Turnaround Time adalah : " << rerata << endl;
+}
+
+void AWT(float sumWT, int n){
+    float rerata = sumWT/n;
+
+    cout << "Average Waiting Time adalah : " << rerata << endl;
+}
+
+void menu(){
+    cout
+    << "========================MENU QUEUE ROUND ROBIN========================\n"
+    << "[1] Input Queue\n"
+    << "[2] Tampilkan Seluruh Queue\n"
+    << "[3] Proses\n"
+    << "[4] Tampilkan Average TAT\n"
+    << "[5] Tampilkan Average WT\n"
+    << "[6] Keluar\n"
+    << "Pilih Menu: ";
 }
